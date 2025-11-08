@@ -1,0 +1,15 @@
+# -- Main Configuration --
+baseURL = "https://exploratorio.net/"
+title = "Exploratorio HD"
+
+languageCode = "es"
+defaultContentLanguage = "es"
+
+enableRobotsTXT = true
+summaryLength = 0
+
+[pagination]
+  pagerSize = 10
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]

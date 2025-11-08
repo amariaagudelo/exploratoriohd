@@ -1,0 +1,21 @@
+# config/_default/menus.toml
+
+[[main]]
+  name = "Acerca"
+  pageRef = "acerca"
+  weight = 10
+
+[[main]]
+  name = "Equipo"
+  pageRef = "equipo"
+  weight = 20
+
+[[main]]
+  name = "Proyectos"
+  pageRef = "proyectos"
+  weight = 30
+
+[[main]]
+  name = "Agenda HD"
+  pageRef = "agenda"
+  weight = 40
