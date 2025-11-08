@@ -38,6 +38,8 @@ jobs:
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
         run: |
+          hugo mod clean
+          hugo mod get -u
           hugo \
             --gc \
             --minify \
