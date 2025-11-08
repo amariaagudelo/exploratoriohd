@@ -24,13 +24,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # No necesitamos submodules, usamos Hugo Modules
+          fetch-depth: 0 
 
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
 
-      # --- PASO DE DESCARGA SEPARADO ---
       - name: Download Hugo Modules
         run: hugo mod get -u
 
@@ -40,7 +39,7 @@ jobs:
           HUGO_ENV: production
         run: |
           hugo \
-            --ignoreCache \ # <- ¡Esta es la corrección clave!
+            --ignoreCache \
             --gc \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
