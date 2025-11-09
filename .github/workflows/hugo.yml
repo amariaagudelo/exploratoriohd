@@ -11,23 +11,31 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # --- SOLUCIÓN 1: Instala Hugo de la forma correcta ---
       - name: Install Hugo
+        # Usa la action correcta para instalar Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: 'latest' # Usa la última versión
-          extended: true         # Instala la versión Extended (necesaria para Congo)
+          hugo-version: 'latest'
+          extended: true
 
-      # --- SOLUCIÓN 2: Trae el submódulo (el tema) ---
+      - name: Install Go
+        # Necesario para que "hugo mod" funcione
+        uses: actions/setup-go@v5
+        with:
+          go-version: '^1.20'
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: 'recursive' # Le dice que traiga el contenido de /themes/congo/
           fetch-depth: 0
 
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
+      
+      - name: Download Modules
+        # Este paso descarga el tema Congo usando go.mod
+        run: hugo mod get -u
 
       - name: Build with Hugo
         env:

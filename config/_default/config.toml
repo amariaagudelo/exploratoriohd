@@ -1,5 +1,4 @@
 # -- Main Configuration --
-theme = "congo"
 baseURL = "https://exploratorio.net/"
 title = "Exploratorio HD"
 
