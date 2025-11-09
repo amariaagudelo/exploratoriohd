@@ -11,27 +11,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Install Hugo CLI
-        run: |
-          wget -O hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.141.0/hugo_extended_0.141.0_linux_amd64.deb
-          sudo dpkg -i hugo.deb
-      
+      # --- SOLUCIÓN 1: Instala Hugo de la forma correcta ---
+      - name: Install Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest' # Usa la última versión
+          extended: true         # Instala la versión Extended (necesaria para Congo)
+
+      # --- SOLUCIÓN 2: Trae el submódulo (el tema) ---
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          submodules: 'recursive' # Le dice que traiga el contenido de /themes/congo/
           fetch-depth: 0
 
-      # --- ¡AQUÍ ESTÁ LA SOLUCIÓN! ---
-      - name: Install Unzip
-        run: sudo apt-get install -y unzip
-      
-      - name: Download and Unzip Congo Theme
-        run: |
-          wget https://github.com/jpanther/congo/archive/refs/tags/v2.12.2.zip
-          unzip v2.12.2.zip
-          mkdir -p themes
-          mv congo-2.12.2 themes/congo
-      
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
