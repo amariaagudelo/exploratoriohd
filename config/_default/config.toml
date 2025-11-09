@@ -1,5 +1,5 @@
 # -- Main Configuration --
-baseURL = "https://exploratorio.net/"
+baseURL = "https://exploratoriohd.net/"
 title = "Exploratorio HD"
 
 languageCode = "es"
