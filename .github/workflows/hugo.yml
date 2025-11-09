@@ -7,19 +7,23 @@ on:
       - main
   workflow_dispatch:
 
+# --- ESTA ES LA SOLUCIÓN ---
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Install Hugo
-        # Usa la action correcta para instalar Hugo
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: 'latest'
           extended: true
 
       - name: Install Go
-        # Necesario para que "hugo mod" funcione
         uses: actions/setup-go@v5
         with:
           go-version: '^1.20'
@@ -34,7 +38,6 @@ jobs:
         uses: actions/configure-pages@v5
       
       - name: Download Modules
-        # Este paso descarga el tema Congo usando go.mod
         run: hugo mod get -u
 
       - name: Build with Hugo
